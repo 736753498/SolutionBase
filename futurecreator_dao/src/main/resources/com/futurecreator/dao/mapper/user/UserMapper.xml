@@ -11,4 +11,29 @@
             <result property="password" column="password" jdbcType="VARCHAR"/>
     </resultMap>
 
+    <select id="isUserValid" resultType="boolean">
+        SELECT EXISTS(
+            SELECT 1 FROM user
+            WHERE  phone = #{phone,jdbcType=VARCHAR}
+            AND password = #{password,jdbcType=VARCHAR} limit 1
+            ) AS result;
+    </select>
+
+    <insert id="addUser">
+        insert into user
+        (id, name, phone,
+         password)
+        values (#{id,jdbcType=NUMERIC}, #{name,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR},
+                #{password,jdbcType=VARCHAR})
+    </insert>
+    <update id="updateSelective">
+        update user
+        <set>
+            <if test="name != null">name=#{name,jdbcType=VARCHAR},</if>
+            <if test="phone != null">phone=#{phone,jdbcType=VARCHAR},</if>
+            <if test="password != null">password=#{password,jdbcType=VARCHAR},</if>
+        </set>
+        where id = #{id,jdbcType=NUMERIC}
+    </update>
+
 </mapper>
