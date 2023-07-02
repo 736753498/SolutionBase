@@ -12,4 +12,22 @@
             <result property="vxAccount" column="vx_account" jdbcType="VARCHAR"/>
     </resultMap>
 
+    <select id="isUserValid" resultType="boolean">
+        SELECT EXISTS(
+                       SELECT 1 FROM provider
+                       WHERE  phone = #{phone,jdbcType=VARCHAR}
+                         AND password = #{password,jdbcType=VARCHAR} limit 1
+                   ) AS result;
+    </select>
+
+    <update id="updateProviderByPhone">
+        update provider
+        <set>
+            <if test="name != null">name=#{name,jdbcType=VARCHAR},</if>
+            <if test="password != null">password=#{password,jdbcType=VARCHAR},</if>
+            <if test="vxAccount != null">vx_account = #{vxAccount,jdbcType=VARCHAR},</if>
+        </set>
+        where phone = #{phone,jdbcType=VARCHAR}
+    </update>
+
 </mapper>
