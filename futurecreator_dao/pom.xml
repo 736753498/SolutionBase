@@ -8,11 +8,13 @@
         <version>1.0</version>
         <relativePath/>
     </parent>
-    <groupId>com.futurecreator.dao</groupId>
-    <artifactId>dao</artifactId>
+
+    <groupId>com.futurecreator</groupId>
+    <artifactId>futureCreator_dao</artifactId>
     <version>1.0</version>
     <name>futureCreator_dao</name>
     <description>futureCreator_dao</description>
+    <packaging>jar</packaging>
 
     <properties>
         <java.version>8</java.version>
