@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.futurecreator.dao.mapper.module.RelModuleInterfaceMapper">
+
+    <resultMap id="BaseResultMap" type="com.futurecreator.dao.pojo.module.RelModuleInterface">
+            <id property="id" column="id" jdbcType="BIGINT"/>
+            <result property="moduleId" column="module_id" jdbcType="BIGINT"/>
+            <result property="interfaceId" column="interface_id" jdbcType="BIGINT"/>
+            <result property="amount" column="amount" jdbcType="INTEGER"/>
+            <result property="description" column="description" jdbcType="VARCHAR"/>
+    </resultMap>
+
+</mapper>
