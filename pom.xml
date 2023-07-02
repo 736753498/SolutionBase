@@ -21,8 +21,9 @@
     </properties>
 
     <modules>
-        <module>searchQuestion</module>
         <module>common</module>
+        <module>searchQuestion</module>
+        <module>futureCreator_dao</module>
     </modules>
 
 
