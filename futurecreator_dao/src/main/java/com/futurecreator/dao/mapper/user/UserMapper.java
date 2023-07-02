@@ -1,8 +1,9 @@
 package com.futurecreator.dao.mapper.user;
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Param;
 import com.futurecreator.dao.pojo.user.User;
 
-public interface UserMapper{
+public interface UserMapper extends BaseMapper<User> {
     /**
      * 判断是否有phone,password对应的用户
      * @param phone
@@ -12,16 +13,8 @@ public interface UserMapper{
     Boolean isUserValid(@Param("phone") String phone, @Param("password") String password);
 
     /**
-     * 插入对应的user
-     * @param user
+     * 根据phone来更新user
      * @return
      */
-    int addUser(User user);
-
-    /**
-     * 根据id更新user
-     * @param user
-     * @return
-     */
-    int updateSelective(User user);
+    int updateUserByPhone(User user);
 }

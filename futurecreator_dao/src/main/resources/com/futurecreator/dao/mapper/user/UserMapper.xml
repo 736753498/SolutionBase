@@ -19,21 +19,13 @@
             ) AS result;
     </select>
 
-    <insert id="addUser">
-        insert into user
-        (id, name, phone,
-         password)
-        values (#{id,jdbcType=NUMERIC}, #{name,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR},
-                #{password,jdbcType=VARCHAR})
-    </insert>
-    <update id="updateSelective">
+    <update id="updateUserByPhone">
         update user
         <set>
             <if test="name != null">name=#{name,jdbcType=VARCHAR},</if>
-            <if test="phone != null">phone=#{phone,jdbcType=VARCHAR},</if>
             <if test="password != null">password=#{password,jdbcType=VARCHAR},</if>
         </set>
-        where id = #{id,jdbcType=NUMERIC}
+        where phone = #{phone,jdbcType=VARCHAR}
     </update>
 
 </mapper>
