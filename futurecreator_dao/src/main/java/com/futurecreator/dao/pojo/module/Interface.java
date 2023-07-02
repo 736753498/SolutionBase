@@ -12,6 +12,8 @@ import lombok.NoArgsConstructor;
 public class Interface {
     @TableId(type = IdType.AUTO)
     private Long id;
+    private Long moduleId;
     private String name;
     private String description;
+    private Integer amount;
 }
