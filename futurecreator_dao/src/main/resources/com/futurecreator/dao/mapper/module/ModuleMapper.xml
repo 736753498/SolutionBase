@@ -10,7 +10,28 @@
             <result property="description" column="description" jdbcType="VARCHAR"/>
     </resultMap>
 
-    <sql id="Base_Column_List">
-        id,name,description
-    </sql>
+    <resultMap id="ModuleResultMap" type="com.futurecreator.dao.pojo.module.R.ModuleR">
+        <id property="id" column="m_id" jdbcType="BIGINT"/>
+        <result property="name" column="m_name" jdbcType="VARCHAR"/>
+        <result property="description" column="m_description" jdbcType="VARCHAR"/>
+        <collection property="interfaces" ofType="com.futurecreator.dao.pojo.module.R.InterfaceR">
+            <id property="id" column="i_id" jdbcType="BIGINT"/>
+            <result property="name" column="i_name" jdbcType="VARCHAR"/>
+            <result property="description" column="i_description" jdbcType="VARCHAR"/>
+            <result property="amount" column="i_amount" jdbcType="INTEGER"/>
+        </collection>
+    </resultMap>
+
+    <select id="getAllModuleR" resultMap="ModuleResultMap">
+        select
+            m.id as m_id,
+            m.description as m_description,
+            m.name as m_name,
+            i.id as i_id,
+            i.description as i_description,
+            i.name as i_name,
+            amount as i_amount
+        from module m inner join interface i on m.id = i.module_id
+    </select>
+
 </mapper>
