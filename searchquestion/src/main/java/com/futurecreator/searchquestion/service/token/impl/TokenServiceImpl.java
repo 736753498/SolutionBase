@@ -11,7 +11,6 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 @Service
@@ -71,6 +70,37 @@ public class TokenServiceImpl implements TokenService {
     }
 
     /**
+     * 根据上传的token中userId来判断当前用户是否使用还再使用该token
+     * 先判断content是否失效或不合法
+     * 再从数据库中得到当前用户的token
+     * 进行比较并返回结果
+     *
+     * @param token
+     * @return
+     */
+    @Override
+    public UserTokenStorageState getUserTokenStoreState(String token) {
+        String content=null;
+        if(StringUtils.isBlank(token)||(content = jwt.getContentByToken(token))==null)
+            return UserTokenStorageState.TOKEN_ERROR;
+
+        Long userId=null;
+        try {
+            userId=Long.parseLong(content);
+        }catch (NumberFormatException e){
+            return UserTokenStorageState.TOKEN_ERROR;
+        }
+
+        String userToken = redisTemplate.opsForValue().get(getStorageFormatUserId(userId));
+        if(userToken==null)
+            return UserTokenStorageState.NO_STORE;
+        else if(userToken.equals(token))
+            return UserTokenStorageState.STORE_THIS;
+        else
+            return UserTokenStorageState.STORE_OTHER;
+    }
+
+    /**
      * 根据token取出redis中存储的user info
      * 先判断token是否合法和过期
      * 再在redis中取出user信息
@@ -87,12 +117,16 @@ public class TokenServiceImpl implements TokenService {
     }
 
     /**
-     * 直接删除redis中对应的token即可
-     * user-token map的值无需删除,在用户新登录时会覆盖掉
+     * 删除redis中对应的token
+     * 并将user-token map中的user信息删除
      * @param token
      */
     @Override
     public void clearUserInfoByToken(String token) {
         redisTemplate.delete(getStorageFormatToken(token));
+        try{
+            long userId = Long.parseLong(jwt.getContentByToken(token));
+            redisTemplate.delete(getStorageFormatUserId(userId));
+        }catch (NumberFormatException ignored){}
     }
 }
