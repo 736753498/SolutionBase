@@ -34,4 +34,16 @@
         from module m inner join interface i on m.id = i.module_id
     </select>
 
+    <select id="getModuleRByName" resultMap="ModuleResultMap">
+        select
+            m.id as m_id,
+            m.description as m_description,
+            m.name as m_name,
+            i.id as i_id,
+            i.description as i_description,
+            i.name as i_name,
+            amount as i_amount
+        from module m inner join interface i on m.id = i.module_id
+        where m.name=#{name}
+    </select>
 </mapper>

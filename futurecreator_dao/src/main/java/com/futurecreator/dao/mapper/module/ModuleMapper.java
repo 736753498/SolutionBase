@@ -12,4 +12,6 @@ public interface ModuleMapper extends BaseMapper<Module> {
      * @return
      */
     List<ModuleR> getAllModuleR();
+
+    ModuleR getModuleRByName(@Param("name") String name);
 }
