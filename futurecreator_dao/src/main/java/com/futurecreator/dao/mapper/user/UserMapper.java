@@ -5,6 +5,14 @@ import com.futurecreator.dao.pojo.user.User;
 
 public interface UserMapper extends BaseMapper<User> {
     /**
+     * 根据phone返回对应的用户
+     * @param phone
+     * @return
+     */
+    User getUserByPhone(@Param("phone") String phone);
+
+
+    /**
      * 根据phone,password返回对应的用户
      * @param phone
      * @param password
