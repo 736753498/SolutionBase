@@ -4,10 +4,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class SearchquestionApplication {
-
+public class SearchQuestionApplication {
 	public static void main(String[] args) {
-		SpringApplication.run(SearchquestionApplication.class, args);
+		SpringApplication.run(SearchQuestionApplication.class, args);
 	}
-
 }
