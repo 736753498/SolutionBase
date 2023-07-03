@@ -11,12 +11,10 @@
             <result property="password" column="password" jdbcType="VARCHAR"/>
     </resultMap>
 
-    <select id="isUserValid" resultType="boolean">
-        SELECT EXISTS(
-            SELECT 1 FROM user
+    <select id="getUserByPhoneAndPassWord" resultType="com.futurecreator.dao.pojo.user.User">
+            SELECT * FROM user
             WHERE  phone = #{phone,jdbcType=VARCHAR}
             AND password = #{password,jdbcType=VARCHAR} limit 1
-            ) AS result;
     </select>
 
     <update id="updateUserByPhone">

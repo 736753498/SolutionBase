@@ -5,12 +5,12 @@ import com.futurecreator.dao.pojo.user.User;
 
 public interface UserMapper extends BaseMapper<User> {
     /**
-     * 判断是否有phone,password对应的用户
+     * 根据phone,password返回对应的用户
      * @param phone
      * @param password
      * @return
      */
-    Boolean isUserValid(@Param("phone") String phone, @Param("password") String password);
+    User getUserByPhoneAndPassWord(@Param("phone") String phone, @Param("password") String password);
 
     /**
      * 根据phone来更新user
