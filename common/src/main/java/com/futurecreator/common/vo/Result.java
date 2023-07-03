@@ -1,6 +1,6 @@
 package com.futurecreator.common.vo;
 
-import com.futurecreator.common.enums.BusinessCodeEnum;
+import com.futurecreator.common.enums.TransCode;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -39,11 +39,11 @@ public class Result<T> implements Serializable {
     private T result;
 
     public static <T> Result<T> success(){
-        return new Result<>(true,BusinessCodeEnum.DEFAULT_SUCCESS.getMsg(), BusinessCodeEnum.DEFAULT_SUCCESS.getCode(),null);
+        return new Result<>(true, TransCode.DEFAULT_SUCCESS.getMsg(), TransCode.DEFAULT_SUCCESS.getCode(),null);
     }
 
     public static <T> Result<T> success(T data){
-        return new Result<>(true,"success", BusinessCodeEnum.DEFAULT_SUCCESS.getCode(),data);
+        return new Result<>(true,"success", TransCode.DEFAULT_SUCCESS.getCode(),data);
     }
 
     public static <T> Result<T> fail(Integer code, String message){
@@ -51,19 +51,19 @@ public class Result<T> implements Serializable {
     }
 
     public static <T> Result<T> fail(){
-        return new Result<>(false,BusinessCodeEnum.DEFAULT_SYS_ERROR.getMsg(),BusinessCodeEnum.DEFAULT_SYS_ERROR.getCode(),null);
+        return new Result<>(false, TransCode.DEFAULT_SYS_ERROR.getMsg(), TransCode.DEFAULT_SYS_ERROR.getCode(),null);
     }
 
-    public static <T> Result<T> fail(BusinessCodeEnum codeEnum){
+    public static <T> Result<T> fail(TransCode codeEnum){
         return new Result<>(false,codeEnum.getMsg(),codeEnum.getCode(),null);
     }
 
     public static <T> Result<T> noPermission(){
-        return new Result<>(false, BusinessCodeEnum.HTTP_NO_PERMISSION.getMsg(),BusinessCodeEnum.HTTP_NO_PERMISSION.getCode(),null);
+        return new Result<>(false, TransCode.HTTP_NO_PERMISSION.getMsg(), TransCode.HTTP_NO_PERMISSION.getCode(),null);
     }
 
     public static <T> Result<T> noLogin() {
-        return new Result<>(false,BusinessCodeEnum.HTTP_NO_LOGIN.getMsg(),BusinessCodeEnum.HTTP_NO_LOGIN.getCode(),null);
+        return new Result<>(false, TransCode.HTTP_NO_LOGIN.getMsg(), TransCode.HTTP_NO_LOGIN.getCode(),null);
     }
 }
 
