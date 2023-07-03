@@ -13,8 +13,10 @@ public class JWTesters {
     private JWT jwt;
     @Test
     public void testJWT(){
-        String token = jwt.createToken("1999", 1L);
+        String token = jwt.createToken("1999", 10000L);
 
         System.out.println(jwt.isTokenValid(token));
+
+        System.out.println(jwt.getContentByToken(token));
     }
 }
