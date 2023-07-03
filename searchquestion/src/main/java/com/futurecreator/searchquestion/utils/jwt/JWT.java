@@ -22,6 +22,8 @@ public class JWT {
     @Value("${jwt.token}")
     private String jwtToken;
 
+    private final String contentString="content";
+
     /**
      * 根据内容和过期时间创建token
      * @param content
@@ -30,7 +32,7 @@ public class JWT {
      */
     public String createToken(String content,Long expireTime){
         Map<String,Object> claims = new HashMap<>();
-        claims.put("content",content);
+        claims.put(contentString,content);
         JwtBuilder jwtBuilder = Jwts.builder()
                 .signWith(SignatureAlgorithm.HS256, jwtToken) // 签发算法，秘钥为jwtToken
                 .setClaims(claims) // body数据，要唯一，自行设置
@@ -39,12 +41,30 @@ public class JWT {
         return jwtBuilder.compact();
     }
 
-    //解密token,得到id
+    /**
+     * 根据token判断是否有效
+     * @param token
+     * @return
+     */
     public Boolean isTokenValid(String token){
         try {
             return Jwts.parser().setSigningKey(jwtToken).parse(token)!=null;
         }catch (Exception e){
             return false;
+        }
+    }
+
+    /**
+     * 根据token得到内容信息
+     * @param token
+     * @return
+     */
+    public String getContentByToken(String token){
+        try {
+            Map<String, String> claims = (Map<String, String>) Jwts.parser().setSigningKey(jwtToken).parse(token).getBody();
+            return claims.get(contentString);
+        }catch (Exception e){
+            return null;
         }
     }
 }
