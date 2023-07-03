@@ -19,12 +19,14 @@
 	</properties>
 
 	<dependencies>
+		<!--common-->
 		<dependency>
 			<groupId>com.futurecreator</groupId>
 			<artifactId>common</artifactId>
 			<version>1.0</version>
 		</dependency>
 
+		<!--dao-->
 		<dependency>
 			<groupId>com.futurecreator</groupId>
 			<artifactId>futureCreator_dao</artifactId>
@@ -69,15 +71,21 @@
 		</dependency>
 
 		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<scope>test</scope>
 		</dependency>
 
 		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt</artifactId>
+			<version>0.9.1</version>
 		</dependency>
 
 	</dependencies>
