@@ -118,7 +118,7 @@ public class TokenServiceImpl implements TokenService {
 
     /**
      * 删除redis中对应的token
-     * 并将user-token map中的user信息删除
+     * 在token和userToken相等时(既本人是登录用户时)将user-token map中的user信息删除
      * @param token
      */
     @Override
@@ -126,7 +126,8 @@ public class TokenServiceImpl implements TokenService {
         redisTemplate.delete(getStorageFormatToken(token));
         try{
             long userId = Long.parseLong(jwt.getContentByToken(token));
-            redisTemplate.delete(getStorageFormatUserId(userId));
+            if(getUserTokenStoreState(token)==UserTokenStorageState.STORE_THIS)
+                redisTemplate.delete(getStorageFormatUserId(userId));
         }catch (NumberFormatException ignored){}
     }
 }
