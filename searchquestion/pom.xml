@@ -6,7 +6,6 @@
 		<groupId>com.futurecreator</groupId>
 		<artifactId>futurecreator</artifactId>
 		<version>1.0</version>
-		<relativePath/>
 	</parent>
 
 	<artifactId>searchquestion</artifactId>
