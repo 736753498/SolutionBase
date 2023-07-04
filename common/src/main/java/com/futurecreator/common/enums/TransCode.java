@@ -17,7 +17,8 @@ public enum TransCode {
     CHECK_PARAM_NOT_MATCH(101,"检查参数不匹配"),
     CHECK_BIZ_ERROR_VALIDATE_CODE(102,"检查业务验证码错误"),
     MOBILE_PHONE_USED(103,"电话号码已被注册"),
-
+    VX_ACCOUNT_USED(104,"微信号已被使用"),
+    USER_NAME_USED(105,"用户名已被使用"),
     //login
     NO_LOGIN(120,"未登录")
     ;
