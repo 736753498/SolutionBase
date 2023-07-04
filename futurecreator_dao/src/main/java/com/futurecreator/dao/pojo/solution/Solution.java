@@ -16,4 +16,5 @@ public class Solution {
     private String description;
     private String keyword;
     private String text;
+    private Long createUser;
 }
