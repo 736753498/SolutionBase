@@ -50,6 +50,8 @@ name
 
 description
 
+create_user
+
 ### interface
 
 module_id
@@ -69,6 +71,8 @@ keyword
 description
 
 text (json)
+
+create_user
 
 ## 4.接口文档
 
@@ -134,9 +138,9 @@ text (json)
 请求参数：
 
 | 参数名称     | 参数类型 | 说明   |
-| ------------ | -------- | ------ |
-| phone        | string   | 电话号 |
-| **password** | string   | 密码   |
+| -------- | -------- | ------ |
+| phone    | string   | 电话号 |
+| password | string   | 密码   |
 
 返回数据：result 携带一个token
 
