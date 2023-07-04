@@ -7,6 +7,7 @@ public enum TransCode {
     HTTP_NO_LOGIN(401,"登录已失效，请重新登录"),
     HTTP_NO_PERMISSION(403,"抱歉，你没有访问权限"),
     DEFAULT_SUCCESS(200,"success"),
+    ACCOUNT_OR_PASSWORD_HAVE_ERROR(209,"账号或密码有误"),
     CHECK_PARAM_HAVE_ERROR(210,"参数异常"),
     DEFAULT_SYS_ERROR(209,"系统错误"),
     CHECK_PARAM_NO_RESULT(210,"检测参数无结果"),
@@ -15,7 +16,7 @@ public enum TransCode {
     ILLEGAL_REQUEST(213,"非法请求"),
     CHECK_PARAM_NOT_MATCH(101,"检查参数不匹配"),
     CHECK_BIZ_ERROR_VALIDATE_CODE(102,"检查业务验证码错误"),
-    CHECK_BIZ_ERROR_MOBILE_USED(103,"检查业务电话号码已被使用"),
+    MOBILE_PHONE_USED(103,"电话号码已被注册"),
 
     //login
     NO_LOGIN(120,"未登录")
