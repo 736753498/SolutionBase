@@ -8,5 +8,6 @@ public class ModuleR {
     private Long id;
     private String name;
     private String description;
+    private Long createUser;
     private List<InterfaceR> interfaces;
 }

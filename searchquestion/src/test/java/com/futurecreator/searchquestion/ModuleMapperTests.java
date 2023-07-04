@@ -38,6 +38,7 @@ public class ModuleMapperTests {
         ModuleR moduleR = new ModuleR();
         moduleR.setName("ccc");
         moduleR.setDescription("cccaaa");
+        moduleR.setCreateUser(1L);
 
         ArrayList<InterfaceR> interfaces = new ArrayList<>();
 

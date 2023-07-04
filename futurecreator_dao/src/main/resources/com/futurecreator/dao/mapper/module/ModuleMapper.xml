@@ -14,6 +14,7 @@
         <id property="id" column="m_id" jdbcType="BIGINT"/>
         <result property="name" column="m_name" jdbcType="VARCHAR"/>
         <result property="description" column="m_description" jdbcType="VARCHAR"/>
+        <result property="createUser" column="create_user" jdbcType="BIGINT"/>
         <collection property="interfaces" ofType="com.futurecreator.dao.pojo.module.R.InterfaceR">
             <id property="id" column="i_id" jdbcType="BIGINT"/>
             <result property="name" column="i_name" jdbcType="VARCHAR"/>
@@ -27,6 +28,7 @@
             m.id as m_id,
             m.description as m_description,
             m.name as m_name,
+            create_user,
             i.id as i_id,
             i.description as i_description,
             i.name as i_name,
@@ -39,6 +41,7 @@
             m.id as m_id,
             m.description as m_description,
             m.name as m_name,
+            create_user,
             i.id as i_id,
             i.description as i_description,
             i.name as i_name,
