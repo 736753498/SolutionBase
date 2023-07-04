@@ -9,6 +9,7 @@ import com.futurecreator.dao.mapper.user.UserMapper;
 import com.futurecreator.dao.pojo.user.User;
 import com.futurecreator.searchquestion.service.auth.AuthService;
 import com.futurecreator.searchquestion.service.token.TokenService;
+import com.futurecreator.searchquestion.utils.pwdsalt.PwdUtil;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -21,11 +22,15 @@ public class AuthServiceImpl implements AuthService {
     @Resource
     private TokenService tokenService;
 
+    @Resource
+    private PwdUtil pwdUtil;
+
     @Override
     public Result<String> login(UserParam userParam) {
         String phone = userParam.getPhone();
         String password = userParam.getPassword();
-        User user = userMapper.getUserByPhoneAndPassWord(phone,password);
+        String saltedPassword = pwdUtil.getSaltedPassword(password);
+        User user = userMapper.getUserByPhoneAndPassWord(phone,saltedPassword);
         if(user!=null){
             String token = tokenService.storeUserGetToken(user);
             return Result.success(token);
@@ -63,7 +68,9 @@ public class AuthServiceImpl implements AuthService {
                 user = new User();
                 user.setName("tempUser");
                 user.setPhone(phone);
-                user.setPassword(password);
+
+                String saltedPassword = pwdUtil.getSaltedPassword(password);
+                user.setPassword(saltedPassword);
                 userMapper.insert(user);
 
                 String userName = "user_" + user.getId();
