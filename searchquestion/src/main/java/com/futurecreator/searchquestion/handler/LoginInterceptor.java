@@ -45,6 +45,7 @@ public class LoginInterceptor implements HandlerInterceptor {
         if(userTokenStoreState== TokenService.UserTokenStorageState.STORE_THIS) {
             User user = tokenService.getInfoByToken(token);
             UserStorage.setUser(user);
+            UserStorage.setToken(token);
             return true;
         }else{
             TransCode transCode=null;
