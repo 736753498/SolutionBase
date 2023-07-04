@@ -19,6 +19,7 @@ public enum TransCode {
     MOBILE_PHONE_USED(103,"电话号码已被注册"),
     VX_ACCOUNT_USED(104,"微信号已被使用"),
     USER_NAME_USED(105,"用户名已被使用"),
+    MODULE_DUPLICATE(106,"模块重复"),
     //login
     NO_LOGIN(120,"未登录")
     ;
