@@ -38,12 +38,14 @@ public class ModuleRMapper {
 
     /**
      * 添加module信息
+     * 若module重复就返回false
+     * 否则返回true
      * @param moduleR
      */
-    public void addModuleR(@NotNull ModuleR moduleR){
+    public Boolean addModuleR(@NotNull ModuleR moduleR){
         //检查是否有重复元素
         if(getModuleRByName(moduleR.getName())!=null)
-            return;
+            return false;
 
         //添加module部分
         Module module = new Module();
@@ -54,6 +56,7 @@ public class ModuleRMapper {
         for(InterfaceR interfaceR:moduleR.getInterfaces()){
             addInterface(interfaceR,module.getId());
         }
+        return true;
     }
 
     /**
