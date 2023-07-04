@@ -2,9 +2,8 @@ package com.futurecreator.searchquestion.service.auth;
 
 import com.futurecreator.common.vo.Result;
 import com.futurecreator.common.vo.user.UserParam;
-import org.springframework.stereotype.Service;
 
-@Service
+
 public interface AuthService {
     /**
      * 根据用户信息进行登录
