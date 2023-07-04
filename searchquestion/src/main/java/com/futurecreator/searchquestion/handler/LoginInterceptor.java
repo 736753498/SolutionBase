@@ -1,6 +1,7 @@
 package com.futurecreator.searchquestion.handler;
 
 import com.alibaba.fastjson.JSON;
+import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.futurecreator.common.enums.TransCode;
 import com.futurecreator.common.vo.Result;
 import com.futurecreator.dao.pojo.user.User;
@@ -47,16 +48,20 @@ public class LoginInterceptor implements HandlerInterceptor {
             return true;
         }else{
             TransCode transCode=null;
-            switch (userTokenStoreState){
-                case TOKEN_ERROR:
-                    transCode=TransCode.CHECK_PARAM_HAVE_ERROR;
-                    break;
-                case NO_STORE:
-                    transCode=TransCode.NO_LOGIN;
-                    break;
-                case STORE_OTHER:
-                    transCode=TransCode.HTTP_NO_LOGIN;
-                    break;
+            if(token==null)
+                transCode=TransCode.NO_LOGIN;
+            else {
+                switch (userTokenStoreState){
+                    case TOKEN_ERROR:
+                        transCode=TransCode.CHECK_PARAM_HAVE_ERROR;
+                        break;
+                    case NO_STORE:
+                        transCode=TransCode.NO_LOGIN;
+                        break;
+                    case STORE_OTHER:
+                        transCode=TransCode.HTTP_NO_LOGIN;
+                        break;
+                }
             }
             //返回错误信息
             response.setContentType("application/json;charset=UTF-8");
