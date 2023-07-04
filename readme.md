@@ -262,5 +262,193 @@ ex: localhost:8000/info/changePassword?password=vvvvv
 
 
 
+### 3.模块信息
 
+#### 1.创建新模块
+
+接口url：/module/add
+
+请求方式：post
+
+请求参数：
+
+~~~json
+{
+    "name":"电池",
+    "description":"用于供电",
+    "interfaces":[
+        {
+            "name":"正极",
+            "description":"正极电压高",
+            "amount":"1"
+        },
+        {
+            "name":"负极",
+            "description":"负极电压高",
+            "amount":"1"
+        }
+    ]
+}
+~~~
+
+
+
+| 参数名称          | 参数类型 | 说明         |
+| ----------------- | -------- | ------------ |
+| name              | string   | 模块名       |
+| description       | string   | 模块解释     |
+| interfaces        | list     | 模块接口数组 |
+| interfaces.amount | string   | 模块接口数量 |
+|                   |          |              |
+
+返回数据：
+
+1.成功
+
+~~~json
+{
+	"success": true,
+	"message": "success",
+	"code": 200,
+	"result": null
+}
+~~~
+
+2.不成功，模块重复
+
+~~~json
+{
+	"success": false,
+	"message": "模块重复",
+	"code": 106,
+	"result": null
+}
+~~~
+
+#### 2.得到所有模块信息
+
+接口url：/module/get/all
+
+请求方式：get
+
+请求参数：
+
+| 参数名称 | 参数类型 | 说明 |
+| -------- | -------- | ---- |
+|          |          |      |
+
+返回数据：
+
+1.成功
+
+~~~json
+{
+	"success": true,
+	"message": "success",
+	"code": 200,
+	"result": [
+		{
+			"id": 8,
+			"name": "ccc",
+			"description": "cccaaa",
+			"createUser": 1,
+			"interfaces": [
+				{
+					"id": 8,
+					"name": "c1",
+					"description": "c1c1",
+					"amount": 1
+				},
+				{
+					"id": 9,
+					"name": "c2",
+					"description": "c2c2",
+					"amount": 2
+				}
+			]
+		},
+		{
+			"id": 9,
+			"name": "电池",
+			"description": "用于供电",
+			"createUser": 1676121268305215490,
+			"interfaces": [
+				{
+					"id": 10,
+					"name": "正极",
+					"description": "正极电压高",
+					"amount": 1
+				},
+				{
+					"id": 11,
+					"name": "负极",
+					"description": "负极电压高",
+					"amount": 1
+				}
+			]
+		}
+	]
+}
+~~~
+
+#### 3.更新模块
+
+接口url：/module/update
+
+请求方式：post
+
+请求参数：
+
+~~~json
+{
+    "name":"电池",
+    "description":"用于供电",
+    "interfaces":[
+        {
+            "name":"正极",
+            "description":"正极电压高",
+            "amount":"1"
+        },
+        {
+            "name":"负极",
+            "description":"负极电压高",
+            "amount":"1"
+        }
+    ]
+}
+~~~
+
+
+
+| 参数名称          | 参数类型 | 说明         |
+| ----------------- | -------- | ------------ |
+| name              | string   | 模块名       |
+| description       | string   | 模块解释     |
+| interfaces        | list     | 模块接口数组 |
+| interfaces.amount | string   | 模块接口数量 |
+|                   |          |              |
+
+返回数据：
+
+1.成功
+
+~~~json
+{
+	"success": true,
+	"message": "success",
+	"code": 200,
+	"result": null
+}
+~~~
+
+2.不成功，模块没有权限
+
+~~~json
+{
+	"success": false,
+	"message": "抱歉，你没有访问权限",
+	"code": 403,
+	"result": null
+}
+~~~
 
