@@ -23,6 +23,7 @@ public class WebMVCConfig implements WebMvcConfigurer {
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(loginInterceptor)
                 .addPathPatterns("auth/logout")
-                .addPathPatterns("/info/**");
+                .addPathPatterns("/info/**")
+                .addPathPatterns("/module/**");
     }
 }
