@@ -16,4 +16,5 @@ public class User {
     private String phone;
     private String password;
     private String vxAccount;
+    private Integer roleId; //0.用户 1.provider 2.审核人
 }
